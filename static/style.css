@@ -73,3 +73,41 @@ footer {
     background: black;
     font-size: 14px;
 }
+body {
+  margin: 0;
+  padding: 0;
+  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  width: 90%;
+  max-width: 800px;
+  padding: 20px;
+  background: #1a1a1a;
+  border-radius: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+  background-size: 400%;
+  border-radius: 18px;
+  z-index: -1;
+  animation: bordaRGB 6s linear infinite;
+}
+
+@keyframes bordaRGB {
+  0% { background-position: 0% }
+  100% { background-position: 400% }
+}
