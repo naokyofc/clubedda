@@ -1,0 +1,75 @@
+body {
+    margin: 0;
+    font-family: 'Arial Black', Arial, sans-serif;
+    text-align: center;
+    color: white;
+    background: linear-gradient(135deg, #ffcc00, #ff0066, #6600ff, #00ccff);
+    background-size: 400% 400%;
+    animation: fundoAnimado 12s ease infinite;
+}
+
+@keyframes fundoAnimado {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    padding: 40px 20px;
+}
+
+.titulo {
+    font-size: 70px;
+    margin-bottom: 40px;
+    color: #fff;
+    text-shadow:
+        3px 3px 0px #000,
+        6px 6px 0px #ff0000,
+        9px 9px 0px #000,
+        12px 12px 25px rgba(0,0,0,0.7);
+    letter-spacing: 3px;
+}
+
+.botoes button {
+    padding: 18px 35px;
+    font-size: 22px;
+    margin: 15px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background: #ffcc00;
+    color: black;
+    font-weight: bold;
+    box-shadow: 0 8px #cc9900;
+    transition: 0.2s;
+}
+
+.botoes button:hover {
+    transform: scale(1.1);
+    background: #ff0066;
+    color: white;
+    box-shadow: 0 8px #990033;
+}
+
+.botoes button:active {
+    transform: scale(0.95);
+    box-shadow: 0 4px #990033;
+}
+
+.conteudo {
+    margin-top: 40px;
+    font-size: 18px;
+    background: rgba(0,0,0,0.7);
+    padding: 25px;
+    border-radius: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer {
+    margin-top: 60px;
+    padding: 15px;
+    background: black;
+    font-size: 14px;
+}
