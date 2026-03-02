@@ -84,7 +84,10 @@
 
     <!-- Botões Eventos e Ranking -->
     <div class="botoes-secundarios">
-        <a href="#" class="botao-eventos">📅 Eventos</a>
+        <a href="#" class="botao-eventos">
+            📅 Eventos 
+            <span id="contador" class="contador">0</span>
+        </a>
         <a href="#" class="botao-ranking">🏆 Ranking DDA</a>
     </div>
 
@@ -93,8 +96,9 @@
         <p>© Direitos reservados a jv.org</p>
     </footer>
 
-    <!-- JS para mostrar/esconder divisões -->
+    <!-- JS -->
     <script>
+        // Toggle divisões
         function toggleDiv(id) {
             const div = document.getElementById(id);
             if (div.style.display === "none" || div.style.display === "") {
@@ -103,6 +107,44 @@
                 div.style.display = "none";
             }
         }
+
+        // Pedir permissão para notificações
+        document.addEventListener("DOMContentLoaded", () => {
+            if ("Notification" in window) {
+                Notification.requestPermission().then(permission => {
+                    console.log("Permissão de notificações:", permission);
+                });
+            }
+        });
+
+        // Contador de notificações
+        let numMensagens = 0;
+
+        function enviarNotificacao(titulo, mensagem) {
+            if (Notification.permission === "granted") {
+                new Notification(titulo, {
+                    body: mensagem,
+                    icon: "static/eventos-icon.png" // coloque algum ícone
+                });
+            }
+        }
+
+        function adicionarNotificacao(titulo, mensagem) {
+            numMensagens++;
+            document.getElementById("contador").textContent = numMensagens;
+            enviarNotificacao(titulo, mensagem);
+        }
+
+        // Zerar contador ao clicar no botão Eventos
+        document.querySelector(".botao-eventos").addEventListener("click", () => {
+            numMensagens = 0;
+            document.getElementById("contador").textContent = numMensagens;
+        });
+
+        // EXEMPLO: disparar notificações automaticamente a cada 10s (para testar)
+        // setInterval(() => {
+        //     adicionarNotificacao("Novo Evento!", "Partida marcada para hoje às 20h");
+        // }, 10000);
     </script>
 
 </body>

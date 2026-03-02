@@ -1,149 +1,126 @@
-/* --- Corpo e Borda RGB --- */
 body {
     margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
-    color: white;
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: #fff;
     text-align: center;
+    position: relative;
     min-height: 100vh;
-    border: 10px solid;
+    /* Borda RGB animada */
+    border: 8px solid;
     border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet) 1;
-    animation: borderRGB 10s linear infinite;
+    animation: borderAnim 5s linear infinite;
 }
 
-@keyframes borderRGB {
+/* Animação da borda RGB */
+@keyframes borderAnim {
     0% { border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet) 1; }
-    25% { border-image: linear-gradient(45deg, violet, red, orange, yellow, green, blue, indigo) 1; }
-    50% { border-image: linear-gradient(45deg, blue, violet, red, orange, yellow, green, indigo) 1; }
-    75% { border-image: linear-gradient(45deg, green, blue, violet, red, orange, yellow, indigo) 1; }
+    25% { border-image: linear-gradient(45deg, orange, yellow, green, blue, indigo, violet, red) 1; }
+    50% { border-image: linear-gradient(45deg, yellow, green, blue, indigo, violet, red, orange) 1; }
+    75% { border-image: linear-gradient(45deg, green, blue, indigo, violet, red, orange, yellow) 1; }
     100% { border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet) 1; }
 }
 
-/* --- Título 3D --- */
+/* Título 3D */
 .titulo-3d {
-    font-size: 50px;
-    font-weight: bold;
-    color: #ffcc00;
-    text-shadow:
-        2px 2px #ff4d4d,
-        4px 4px #4d94ff,
-        6px 6px #33cc33;
-    margin: 30px 0;
+    font-size: 3em;
+    color: #0ff;
+    text-shadow: 2px 2px #f0f, -2px -2px #ff0, 2px -2px #f00;
+    margin: 20px 0;
 }
 
-/* --- Botões Principais --- */
-.botoes-principais {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
+/* Botões Divisão */
 .botao-divisao {
-    padding: 12px 25px;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 10px;
-    color: white;
-    background: linear-gradient(45deg, #ff4d4d, #ffcc00, #4d94ff);
-    background-size: 300% 300%;
-    transition: 0.5s;
+    background: #222;
+    color: #fff;
+    border: 2px solid #0ff;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 1em;
     cursor: pointer;
+    transition: all 0.3s;
 }
-
 .botao-divisao:hover {
-    background-position: 100% 0;
-    transform: scale(1.05);
+    background: #0ff;
+    color: #000;
 }
 
-/* --- Divisões escondidas --- */
+/* Divisões escondidas */
 .divisao-escondida {
     display: none;
+    background: #222;
     margin: 20px auto;
-    max-width: 600px;
     padding: 15px;
     border-radius: 10px;
-    background: rgba(50, 50, 50, 0.6);
-    box-shadow: 0 0 10px #ff4d4d, 0 0 20px #ffcc00, 0 0 30px #4d94ff;
+    width: 80%;
+    text-align: left;
 }
 
-/* --- Links WhatsApp / Discord --- */
+/* Links WhatsApp e Discord */
 .links {
     margin: 20px 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
 }
-
 .links a {
     text-decoration: none;
-    color: white;
-    padding: 10px 20px;
-    font-weight: bold;
+    color: #fff;
+    background: #333;
+    padding: 10px 15px;
+    margin: 5px;
+    display: inline-block;
     border-radius: 8px;
-    background: linear-gradient(45deg, #25D366, #128C7E);
-    transition: 0.5s;
+    transition: 0.3s;
 }
-
-.links a.btn-discord {
-    background: linear-gradient(45deg, #7289DA, #99AAB5);
-}
-
 .links a:hover {
-    transform: scale(1.1);
+    background: #0ff;
+    color: #000;
 }
 
-/* --- Banner Membro da Semana --- */
+/* Destaque Membro da Semana */
 .destaque {
-    background: linear-gradient(45deg, #ff4d4d, #ffcc00, #4d94ff);
-    color: white;
-    padding: 15px 20px;
-    border-radius: 12px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 18px;
+    background: #111;
     margin: 20px auto;
-    max-width: 400px;
-    animation: destaqueGlow 3s ease-in-out infinite alternate;
-    box-shadow: 0 0 10px #ff4d4d, 0 0 20px #ffcc00, 0 0 30px #4d94ff;
+    padding: 15px;
+    border: 2px solid #0ff;
+    border-radius: 10px;
+    width: 80%;
 }
 
-@keyframes destaqueGlow {
-    0% { box-shadow: 0 0 10px #ff4d4d, 0 0 20px #ffcc00, 0 0 30px #4d94ff; }
-    50% { box-shadow: 0 0 20px #ff4d4d, 0 0 30px #ffcc00, 0 0 40px #4d94ff; }
-    100% { box-shadow: 0 0 10px #ff4d4d, 0 0 20px #ffcc00, 0 0 30px #4d94ff; }
-}
-
-/* --- Botões Secundários Eventos / Ranking --- */
+/* Botões secundários (Eventos e Ranking) */
 .botoes-secundarios {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
     margin: 20px 0;
 }
-
 .botoes-secundarios a {
     text-decoration: none;
-    padding: 12px 25px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 10px;
-    color: white;
-    background: linear-gradient(45deg, #ff4d4d, #ffcc00, #4d94ff);
-    background-size: 300% 300%;
-    transition: 0.5s;
-    text-align: center;
+    color: #fff;
+    background: #222;
+    padding: 10px 15px;
+    margin: 5px;
+    display: inline-block;
+    border-radius: 8px;
+    position: relative;
+    font-size: 1em;
+    transition: all 0.3s;
 }
-
 .botoes-secundarios a:hover {
-    background-position: 100% 0;
-    transform: scale(1.05);
+    background: #0ff;
+    color: #000;
 }
 
+/* Contador de notificações */
+.contador {
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    margin-left: 5px;
+    vertical-align: top;
+}
+
+/* Footer */
 footer {
-    margin-top: 40px;
-    padding: 10px 0;
-    font-size: 14px;
-    color: #ccc;
+    margin-top: 30px;
+    padding: 10px;
+    background: #111;
+    border-top: 2px solid #0ff;
 }
