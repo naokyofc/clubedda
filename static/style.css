@@ -147,3 +147,12 @@ footer {
     font-size: 14px;
     color: #ccc;
 }
+.divisao-escondida {
+    display: none; /* escondida inicialmente */
+    margin: 20px auto;
+    max-width: 600px;
+    padding: 15px;
+    border-radius: 10px;
+    background: rgba(50, 50, 50, 0.6);
+    box-shadow: 0 0 10px #ff4d4d, 0 0 20px #ffcc00, 0 0 30px #4d94ff;
+}

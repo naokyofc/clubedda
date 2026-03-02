@@ -16,59 +16,63 @@
         <a href="#divisao2" class="botao-divisao">DIVISÃO 2</a>
     </div>
 
-    <!-- Divisão 1 -->
-    <div id="divisao1" class="divisao">
-        <h2>🏆 CLUBE 1 — OS GOATS</h2>
-        <p>
-            LUIS2 | DDA<br>
-            ultimo fiel<br>
-            ERRO 404<br>
-            MIMOZO DDA<br>
-            MacMoney<br>
-            crebs love<br>
-            gusta¤<br>
-            MCRL | santos<br>
-            †† Rzm64<br>
-            perigo<br>
-            essência<br>
-            CMDツ Maverick<br>
-            BRADOKI<br>
-            code:Joao<br>
-            Sla | DDA<br>
-            愛 | kroy'BS<br>
-            sukunagoat<br>
-            Loki_god
-        </p>
-    </div>
+<!-- Botões Divisão 1 e 2 -->
+<div class="botoes-principais">
+    <button onclick="toggleDiv('divisao1')" class="botao-divisao">DIVISÃO 1</button>
+    <button onclick="toggleDiv('divisao2')" class="botao-divisao">DIVISÃO 2</button>
+</div>
+  <!-- Divisão 1 -->
+<div id="divisao1" class="divisao-escondida">
+    <h2>🏆 CLUBE 1 — OS GOATS</h2>
+    <p>
+        LUIS2 | DDA<br>
+        ultimo fiel<br>
+        ERRO 404<br>
+        MIMOZO DDA<br>
+        MacMoney<br>
+        crebs love<br>
+        gusta¤<br>
+        MCRL | santos<br>
+        †† Rzm64<br>
+        perigo<br>
+        essência<br>
+        CMDツ Maverick<br>
+        BRADOKI<br>
+        code:Joao<br>
+        Sla | DDA<br>
+        愛 | kroy'BS<br>
+        sukunagoat<br>
+        Loki_god
+    </p>
+</div>
 
-    <!-- Divisão 2 -->
-    <div id="divisao2" class="divisao">
-        <h2>👑 CLUBE 2 — OS GOATS</h2>
-        <p>
-            NEGAOTORADOR<br>
-            Jao_Noel<br>
-            night lix<br>
-            KZ | Kunzler†<br>
-            BALAS | BS<br>
-            cranin<br>
-            KM | Lord<br>
-            🌙•MooN•✨<br>
-            Francisco 🧡<br>
-            vitinho<br>
-            VENON<br>
-            愛 | Blaze!<br>
-            Shadow<br>
-            Flash<br>
-            NAVI | Ben On<br>
-            Mailson | DDA<br>
-            DINHO/YT<br>
-            siméxz<br>
-            enzao Clash on<br>
-            TRINITY 🪽<br>
-            ItaliCx
-        </p>
-    </div>
-
+<!-- Divisão 2 -->
+<div id="divisao2" class="divisao-escondida">
+    <h2>👑 CLUBE 2 — OS GOATS</h2>
+    <p>
+        NEGAOTORADOR<br>
+        Jao_Noel<br>
+        night lix<br>
+        KZ | Kunzler†<br>
+        BALAS | BS<br>
+        cranin<br>
+        KM | Lord<br>
+        🌙•MooN•✨<br>
+        Francisco 🧡<br>
+        vitinho<br>
+        VENON<br>
+        愛 | Blaze!<br>
+        Shadow<br>
+        Flash<br>
+        NAVI | Ben On<br>
+        Mailson | DDA<br>
+        DINHO/YT<br>
+        siméxz<br>
+        enzao Clash on<br>
+        TRINITY 🪽<br>
+        ItaliCx
+    </p>
+</div>
     <!-- Links de WhatsApp e Discord -->
     <div class="links">
         <a href="https://chat.whatsapp.com/J5vp0AvG0eX6aYdJcYJneI?mode=gi_t" target="_blank" class="btn-whatsapp">WhatsApp</a>
@@ -92,4 +96,14 @@
         <p>© Direitos reservados a jv.org</p>
     </footer>
 </body>
+<script>
+function toggleDiv(id) {
+    const div = document.getElementById(id);
+    if (div.style.display === "none" || div.style.display === "") {
+        div.style.display = "block";
+    } else {
+        div.style.display = "none";
+    }
+}
+</script>
 </html>
