@@ -124,3 +124,23 @@ footer {
     background: #111;
     border-top: 2px solid #0ff;
 }
+/* ===== ADMS RGB ===== */
+.admin-area {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.admin-nome {
+    font-size: 22px;
+    font-weight: bold;
+    animation: rgbAdmin 3s linear infinite;
+}
+
+@keyframes rgbAdmin {
+    0% { color: red; }
+    20% { color: orange; }
+    40% { color: yellow; }
+    60% { color: green; }
+    80% { color: blue; }
+    100% { color: violet; }
+}
