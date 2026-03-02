@@ -11,7 +11,6 @@ body {
     animation: borderRGB 10s linear infinite;
 }
 
-/* Borda RGB animada */
 @keyframes borderRGB {
     0% { border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet) 1; }
     25% { border-image: linear-gradient(45deg, violet, red, orange, yellow, green, blue, indigo) 1; }
@@ -20,7 +19,6 @@ body {
     100% { border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet) 1; }
 }
 
-/* Título 3D estilo Brawl Stars */
 .titulo-3d {
     font-size: 50px;
     font-weight: bold;
@@ -32,7 +30,6 @@ body {
     margin: 30px 0;
 }
 
-/* Botões Divisão 1 e 2 */
 .botoes-principais {
     display: flex;
     justify-content: center;
@@ -41,7 +38,6 @@ body {
 }
 
 .botao-divisao {
-    text-decoration: none;
     padding: 12px 25px;
     font-size: 18px;
     font-weight: bold;
@@ -50,6 +46,7 @@ body {
     background: linear-gradient(45deg, #ff4d4d, #ffcc00, #4d94ff);
     background-size: 300% 300%;
     transition: 0.5s;
+    cursor: pointer;
 }
 
 .botao-divisao:hover {
@@ -57,8 +54,9 @@ body {
     transform: scale(1.05);
 }
 
-/* Divisões de membros */
-.divisao {
+/* DIVISÕES ESCONDIDAS */
+.divisao-escondida {
+    display: none;
     margin: 20px auto;
     max-width: 600px;
     padding: 15px;
@@ -67,7 +65,6 @@ body {
     box-shadow: 0 0 10px #ff4d4d, 0 0 20px #ffcc00, 0 0 30px #4d94ff;
 }
 
-/* Links WhatsApp e Discord */
 .links {
     margin: 20px 0;
     display: flex;
@@ -93,7 +90,6 @@ body {
     transform: scale(1.1);
 }
 
-/* Banner Membro da Semana */
 .destaque {
     background: linear-gradient(45deg, #ff4d4d, #ffcc00, #4d94ff);
     color: white;
@@ -114,7 +110,6 @@ body {
     100% { box-shadow: 0 0 10px #ff4d4d, 0 0 20px #ffcc00, 0 0 30px #4d94ff; }
 }
 
-/* Botões Eventos e Ranking */
 .botoes-secundarios {
     display: flex;
     justify-content: center;
@@ -140,19 +135,11 @@ body {
     transform: scale(1.05);
 }
 
-/* Footer */
 footer {
     margin-top: 40px;
     padding: 10px 0;
     font-size: 14px;
     color: #ccc;
 }
-.divisao-escondida {
-    display: none; /* escondida inicialmente */
-    margin: 20px auto;
-    max-width: 600px;
-    padding: 15px;
-    border-radius: 10px;
-    background: rgba(50, 50, 50, 0.6);
-    box-shadow: 0 0 10px #ff4d4d, 0 0 20px #ffcc00, 0 0 30px #4d94ff;
-}
+
+
