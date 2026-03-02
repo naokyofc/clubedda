@@ -114,53 +114,82 @@
 
     <!-- JS -->
     <script>
-        // Toggle divisões
-        function toggleDiv(id) {
-            const div = document.getElementById(id);
-            if (div.style.display === "none" || div.style.display === "") {
-                div.style.display = "block";
-            } else {
-                div.style.display = "none";
-            }
+<script>
+
+let avisos = JSON.parse(localStorage.getItem("avisos")) || [];
+let melhor = localStorage.getItem("melhorJogador") || "Ainda não definido";
+let contador = avisos.length;
+
+function toggleEventos(){
+    let area = document.getElementById("areaEventos");
+    area.style.display = (area.style.display === "block") ? "none" : "block";
+
+    atualizarTela();
+
+    // Zerar contador ao abrir
+    contador = 0;
+    atualizarContador();
+}
+
+function atualizarTela(){
+    let lista = document.getElementById("listaAvisos");
+    lista.innerHTML = "";
+
+    avisos.forEach((aviso, index) => {
+        lista.innerHTML += `
+            <div style="margin-bottom:10px;">
+                📌 ${aviso}
+                <button onclick="apagarAviso(${index})" 
+                style="margin-left:10px; background:red; color:white; border:none; border-radius:5px;">
+                ❌
+                </button>
+            </div>
+        `;
+    });
+
+    document.getElementById("melhorJogador").innerText = melhor;
+}
+
+function apagarAviso(index){
+    avisos.splice(index, 1);
+    localStorage.setItem("avisos", JSON.stringify(avisos));
+    atualizarTela();
+}
+
+function abrirLoginAdmin(){
+    let senha = prompt("Digite a senha:");
+    if(senha === "clubedda2026"){
+
+        let mensagem = prompt("Digite o aviso:");
+        if(mensagem){
+            avisos.push(mensagem);
+            localStorage.setItem("avisos", JSON.stringify(avisos));
+            contador++;
+            atualizarContador();
+            alert("Aviso enviado!");
         }
 
-        // Pedir permissão para notificações
-        document.addEventListener("DOMContentLoaded", () => {
-            if ("Notification" in window) {
-                Notification.requestPermission().then(permission => {
-                    console.log("Permissão de notificações:", permission);
-                });
-            }
-        });
-
-        // Contador de notificações
-        let numMensagens = 0;
-
-        function enviarNotificacao(titulo, mensagem) {
-            if (Notification.permission === "granted") {
-                new Notification(titulo, {
-                    body: mensagem,
-                    icon: "static/eventos-icon.png" // coloque algum ícone
-                });
-            }
+        let novoMelhor = prompt("Digite o Melhor Jogador da Semana:");
+        if(novoMelhor){
+            melhor = novoMelhor;
+            localStorage.setItem("melhorJogador", melhor);
+            alert("Melhor jogador atualizado!");
         }
 
-        function adicionarNotificacao(titulo, mensagem) {
-            numMensagens++;
-            document.getElementById("contador").textContent = numMensagens;
-            enviarNotificacao(titulo, mensagem);
-        }
+    } else {
+        alert("Senha incorreta!");
+    }
+}
 
-        // Zerar contador ao clicar no botão Eventos
-        document.querySelector(".botao-eventos").addEventListener("click", () => {
-            numMensagens = 0;
-            document.getElementById("contador").textContent = numMensagens;
-        });
+function atualizarContador(){
+    document.getElementById("contador").innerText = contador;
+}
 
-        // EXEMPLO: disparar notificações automaticamente a cada 10s (para testar)
-        // setInterval(() => {
-        //     adicionarNotificacao("Novo Evento!", "Partida marcada para hoje às 20h");
-        // }, 10000);
+document.addEventListener("DOMContentLoaded", function(){
+    atualizarTela();
+    atualizarContador();
+});
+
     </script>
 <!-- 🔒 BOTÃO CADEADO -->
 <button onclick="abrirLoginAdmin()" 
