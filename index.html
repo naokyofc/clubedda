@@ -99,9 +99,10 @@
 
     <!-- Botões Eventos e Ranking -->
     <div class="botoes-secundarios">
-        <a href="#" class="botao-eventos">
-            📅 Eventos 
-            <span id="contador" class="contador">0</span>
+        <a  href="javascript:void(0)" class="botao-eventos" onclick="toggleEventos()">
+    📅 Eventos
+    <span id="contador" class="contador">0</span>
+</a>
         </a>
         <a href="#" class="botao-ranking">🏆 Ranking DDA</a>
     </div>
@@ -228,6 +229,67 @@ function enviarAviso(){
     document.getElementById("mensagemAdmin").value = "";
     alert("Notificação enviada!");
 }
+</script>
+<!-- 📅 ÁREA DE EVENTOS -->
+<div id="areaEventos" style="display:none; margin-top:20px;">
+    <h2>📢 Avisos</h2>
+    <div id="listaAvisos"></div>
+
+    <h2 style="margin-top:30px;">🏆 Melhor Jogador da Semana</h2>
+    <div id="melhorJogador" style="font-size:20px; font-weight:bold;"></div>
+</div>
+
+<!-- 🔒 BOTÃO ADMIN -->
+<button onclick="abrirLoginAdmin()" 
+style="position:fixed; bottom:20px; left:20px; background:black; color:white; border:2px solid red; padding:10px; border-radius:10px;">
+🔒
+</button>
+
+<script>
+
+let avisos = JSON.parse(localStorage.getItem("avisos")) || [];
+let melhor = localStorage.getItem("melhorJogador") || "Ainda não definido";
+
+function toggleEventos(){
+    let area = document.getElementById("areaEventos");
+    area.style.display = (area.style.display === "block") ? "none" : "block";
+    atualizarTela();
+}
+
+function atualizarTela(){
+    let lista = document.getElementById("listaAvisos");
+    lista.innerHTML = "";
+
+    avisos.forEach((aviso, index) => {
+        lista.innerHTML += "<p>📌 " + aviso + "</p>";
+    });
+
+    document.getElementById("melhorJogador").innerText = melhor;
+}
+
+function abrirLoginAdmin(){
+    let senha = prompt("Digite a senha:");
+    if(senha === "clubedda2026"){
+        let mensagem = prompt("Digite o aviso:");
+        if(mensagem){
+            avisos.push(mensagem);
+            localStorage.setItem("avisos", JSON.stringify(avisos));
+            alert("Aviso enviado!");
+        }
+
+        let novoMelhor = prompt("Digite o Melhor Jogador da Semana:");
+        if(novoMelhor){
+            melhor = novoMelhor;
+            localStorage.setItem("melhorJogador", melhor);
+            alert("Melhor jogador atualizado!");
+        }
+    } else {
+        alert("Senha incorreta!");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", atualizarTela);
+
 </script>
 </body>
 </html>
