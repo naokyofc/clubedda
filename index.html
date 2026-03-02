@@ -115,7 +115,10 @@
     <!-- JS -->
     <script>
 <script>
-
+function toggleDiv(id){
+    var div = document.getElementById(id);
+    div.style.display = (div.style.display === "block") ? "none" : "block";
+}
 let avisos = JSON.parse(localStorage.getItem("avisos")) || [];
 let melhor = localStorage.getItem("melhorJogador") || "Ainda não definido";
 let contador = avisos.length;
