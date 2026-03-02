@@ -161,6 +161,73 @@
         //     adicionarNotificacao("Novo Evento!", "Partida marcada para hoje às 20h");
         // }, 10000);
     </script>
+<!-- 🔒 BOTÃO CADEADO -->
+<button onclick="abrirLoginAdmin()" 
+style="position:fixed; bottom:20px; left:20px; background:black; color:white; border:2px solid red; padding:10px; border-radius:10px;">
+🔒
+</button>
 
+<!-- 🔐 PAINEL ADMIN (ESCONDIDO) -->
+<div id="painelAdmin" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000000f0; color:white; text-align:center; padding-top:100px;">
+
+    <h2>🔐 Painel Administrativo</h2>
+
+    <textarea id="mensagemAdmin" 
+    placeholder="Digite o aviso aqui..." 
+    style="width:80%; height:100px; padding:10px; border-radius:10px;"></textarea>
+
+    <br><br>
+
+    <button onclick="enviarAviso()" 
+    style="padding:10px 20px; border:none; border-radius:10px; background:red; color:white;">
+    Enviar Notificação
+    </button>
+
+    <br><br>
+
+    <button onclick="fecharPainel()" 
+    style="padding:8px 15px; border:none; border-radius:10px; background:gray; color:white;">
+    Fechar
+    </button>
+
+</div>
+
+<script>
+function abrirLoginAdmin(){
+    let senha = prompt("Digite a senha de administrador:");
+
+    if(senha === "clubedda2026"){
+        document.getElementById("painelAdmin").style.display = "block";
+    } else {
+        alert("Senha incorreta!");
+    }
+}
+
+function fecharPainel(){
+    document.getElementById("painelAdmin").style.display = "none";
+}
+
+function enviarAviso(){
+    let mensagem = document.getElementById("mensagemAdmin").value;
+
+    if(mensagem.trim() === ""){
+        alert("Digite uma mensagem!");
+        return;
+    }
+
+    if("Notification" in window){
+        if(Notification.permission === "granted"){
+            new Notification("📢 Aviso Clube DDA", {
+                body: mensagem
+            });
+        } else {
+            Notification.requestPermission();
+        }
+    }
+
+    document.getElementById("mensagemAdmin").value = "";
+    alert("Notificação enviada!");
+}
+</script>
 </body>
 </html>
