@@ -1,107 +1,95 @@
-
-
-y
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CLUBE DDA</title>
-<link rel="stylesheet" href="static/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLUBE DDA</title>
+    <link rel="stylesheet" href="static/style.css">
 </head>
-<body><div class="container">
+<body>
+    <!-- Título principal -->
+    <h1 class="titulo-3d">CLUBE DDA</h1>
 
-<div class="container">
-
-    <h1 class="titulo">CLUBE DDA</h1>
-
-    <div class="botoes">
-        <button onclick="mostrarDivisao('d1')">DIVISÃO 1</button>
-        <button onclick="mostrarDivisao('d2')">DIVISÃO 2</button>
+    <!-- Botões Divisão 1 e 2 -->
+    <div class="botoes-principais">
+        <a href="#divisao1" class="botao-divisao">DIVISÃO 1</a>
+        <a href="#divisao2" class="botao-divisao">DIVISÃO 2</a>
     </div>
 
-    <div id="conteudo" class="conteudo"></div>
-
-</div>
-
-<footer>
-© 2026 Todos os direitos reservados a jv.org
-</footer>
-
-<script>
-function mostrarDivisao(div) {
-    const conteudo = document.getElementById("conteudo");
-
-    if(div === "d1") {
-        conteudo.innerHTML = `
+    <!-- Divisão 1 -->
+    <div id="divisao1" class="divisao">
         <h2>🏆 CLUBE 1 — OS GOATS</h2>
-        <p><strong>ADMINISTRADORES:</strong><br>
-        LUIS2 | DDA<br>
-        ultimo fiel<br>
-        ERRO 404<br>
-        MIMOZO DDA<br><br>
+        <p>
+            LUIS2 | DDA<br>
+            ultimo fiel<br>
+            ERRO 404<br>
+            MIMOZO DDA<br>
+            MacMoney<br>
+            crebs love<br>
+            gusta¤<br>
+            MCRL | santos<br>
+            †† Rzm64<br>
+            perigo<br>
+            essência<br>
+            CMDツ Maverick<br>
+            BRADOKI<br>
+            code:Joao<br>
+            Sla | DDA<br>
+            愛 | kroy'BS<br>
+            sukunagoat<br>
+            Loki_god
+        </p>
+    </div>
 
-        MacMoney<br>
-        crebs love<br>
-        gusta¤<br>
-        MCRL | santos<br>
-        †† Rzm64<br>
-        perigo<br>
-        essência<br>
-        CMDツ Maverick<br>
-        BRADOKI<br>
-        code:Joao<br>
-        Sla | DDA<br>
-        愛 | kroy'BS<br>
-        sukunagoat<br>
-        Loki_god
-        <p><div class="links">
-    <a href="https://chat.whatsapp.com/J5vp0AvG0eX6aYdJcYJneI?mode=gi_t" target="_blank" class="btn-whats">WhatsApp</a>
-    <a href="https://discord.gg/cnZ6VRkVm" target="_blank" class="btn-discord">Discord</a>
-</div>
-        `;
-    }
-
-    if(div === "d2") {
-        conteudo.innerHTML = `
+    <!-- Divisão 2 -->
+    <div id="divisao2" class="divisao">
         <h2>👑 CLUBE 2 — OS GOATS</h2>
         <p>
-        GOAT<br>
-        Vtx<br>
-        Eu-m3Smo<br>
-        jv dnike<br>
-        mistyc<br>
-        ジェイエム |<br>
-        NEGAOTORADOR<br>
-        Jao_Noel<br>
-        night lix<br>
-        KZ | Kunzler†<br>
-        BALAS | BS<br>
-        cranin<br>
-        KM | Lord<br>
-        🌙•MooN•✨<br>
-        Francisco 🧡<br>
-        vitinho<br>
-        VENON<br>
-        愛 | Blaze!<br>
-        Shadow<br>
-        Flash<br>
-        NAVI | Ben On<br>
-        Mailson | DDA<br>
-        DINHO/YT<br>
-        siméxz<br>
-        enzao Clash on<br>
-        TRINITY 🪽<br>
-        ItaliCx
-        </p><div class="links">
-    <a href="https://chat.whatsapp.com/J5vp0AvG0eX6aYdJcYJneI?mode=gi_t" target="_blank" class="btn-whats">WhatsApp</a>
-    <a href="https://discord.gg/cnZ6VRkVm" target="_blank" class="btn-discord">Discord</a>
-</div>
-        `;
-    }
-}
-</script>
-</div>
+            NEGAOTORADOR<br>
+            Jao_Noel<br>
+            night lix<br>
+            KZ | Kunzler†<br>
+            BALAS | BS<br>
+            cranin<br>
+            KM | Lord<br>
+            🌙•MooN•✨<br>
+            Francisco 🧡<br>
+            vitinho<br>
+            VENON<br>
+            愛 | Blaze!<br>
+            Shadow<br>
+            Flash<br>
+            NAVI | Ben On<br>
+            Mailson | DDA<br>
+            DINHO/YT<br>
+            siméxz<br>
+            enzao Clash on<br>
+            TRINITY 🪽<br>
+            ItaliCx
+        </p>
+    </div>
+
+    <!-- Links de WhatsApp e Discord -->
+    <div class="links">
+        <a href="https://chat.whatsapp.com/J5vp0AvG0eX6aYdJcYJneI?mode=gi_t" target="_blank" class="btn-whatsapp">WhatsApp</a>
+        <a href="https://discord.gg/cnZ6VRkVm" target="_blank" class="btn-discord">Discord</a>
+    </div>
+
+    <!-- Banner Membro da Semana -->
+    <div class="destaque">
+        <h2>Membro da Semana</h2>
+        <p>🏆 Em breve...</p>
+    </div>
+
+    <!-- Botões Eventos e Ranking -->
+    <div class="botoes-secundarios">
+        <a href="#" class="botao-eventos">📅 Eventos</a>
+        <a href="#" class="botao-ranking">🏆 Ranking DDA</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© Direitos reservados a jv.org</p>
+    </footer>
 </body>
 </html>
-

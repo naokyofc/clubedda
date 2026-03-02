@@ -1,113 +1,149 @@
 body {
     margin: 0;
-    font-family: 'Arial Black', Arial, sans-serif;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+    color: white;
     text-align: center;
-    color: white;
-    background: linear-gradient(135deg, #ffcc00, #ff0066, #6600ff, #00ccff);
-    background-size: 400% 400%;
-    animation: fundoAnimado 12s ease infinite;
+    min-height: 100vh;
+    border: 10px solid;
+    border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet) 1;
+    animation: borderRGB 10s linear infinite;
 }
 
-@keyframes fundoAnimado {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* Borda RGB animada */
+@keyframes borderRGB {
+    0% { border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet) 1; }
+    25% { border-image: linear-gradient(45deg, violet, red, orange, yellow, green, blue, indigo) 1; }
+    50% { border-image: linear-gradient(45deg, blue, violet, red, orange, yellow, green, indigo) 1; }
+    75% { border-image: linear-gradient(45deg, green, blue, violet, red, orange, yellow, indigo) 1; }
+    100% { border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet) 1; }
 }
 
-.container {
-    padding: 40px 20px;
-}
-
-.titulo {
-    font-size: 70px;
-    margin-bottom: 40px;
-    color: #fff;
-    text-shadow:
-        3px 3px 0px #000,
-        6px 6px 0px #ff0000,
-        9px 9px 0px #000,
-        12px 12px 25px rgba(0,0,0,0.7);
-    letter-spacing: 3px;
-}
-
-.botoes button {
-    padding: 18px 35px;
-    font-size: 22px;
-    margin: 15px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    background: #ffcc00;
-    color: black;
+/* Título 3D estilo Brawl Stars */
+.titulo-3d {
+    font-size: 50px;
     font-weight: bold;
-    box-shadow: 0 8px #cc9900;
-    transition: 0.2s;
+    color: #ffcc00;
+    text-shadow:
+        2px 2px #ff4d4d,
+        4px 4px #4d94ff,
+        6px 6px #33cc33;
+    margin: 30px 0;
 }
 
-.botoes button:hover {
-    transform: scale(1.1);
-    background: #ff0066;
-    color: white;
-    box-shadow: 0 8px #990033;
+/* Botões Divisão 1 e 2 */
+.botoes-principais {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
 }
 
-.botoes button:active {
-    transform: scale(0.95);
-    box-shadow: 0 4px #990033;
-}
-
-.conteudo {
-    margin-top: 40px;
+.botao-divisao {
+    text-decoration: none;
+    padding: 12px 25px;
     font-size: 18px;
-    background: rgba(0,0,0,0.7);
-    padding: 25px;
-    border-radius: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    color: white;
+    background: linear-gradient(45deg, #ff4d4d, #ffcc00, #4d94ff);
+    background-size: 300% 300%;
+    transition: 0.5s;
+}
+
+.botao-divisao:hover {
+    background-position: 100% 0;
+    transform: scale(1.05);
+}
+
+/* Divisões de membros */
+.divisao {
+    margin: 20px auto;
     max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-footer {
-    margin-top: 60px;
     padding: 15px;
-    background: black;
+    border-radius: 10px;
+    background: rgba(50, 50, 50, 0.6);
+    box-shadow: 0 0 10px #ff4d4d, 0 0 20px #ffcc00, 0 0 30px #4d94ff;
+}
+
+/* Links WhatsApp e Discord */
+.links {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.links a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 8px;
+    background: linear-gradient(45deg, #25D366, #128C7E);
+    transition: 0.5s;
+}
+
+.links a.btn-discord {
+    background: linear-gradient(45deg, #7289DA, #99AAB5);
+}
+
+.links a:hover {
+    transform: scale(1.1);
+}
+
+/* Banner Membro da Semana */
+.destaque {
+    background: linear-gradient(45deg, #ff4d4d, #ffcc00, #4d94ff);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 20px auto;
+    max-width: 400px;
+    animation: destaqueGlow 3s ease-in-out infinite alternate;
+    box-shadow: 0 0 10px #ff4d4d, 0 0 20px #ffcc00, 0 0 30px #4d94ff;
+}
+
+@keyframes destaqueGlow {
+    0% { box-shadow: 0 0 10px #ff4d4d, 0 0 20px #ffcc00, 0 0 30px #4d94ff; }
+    50% { box-shadow: 0 0 20px #ff4d4d, 0 0 30px #ffcc00, 0 0 40px #4d94ff; }
+    100% { box-shadow: 0 0 10px #ff4d4d, 0 0 20px #ffcc00, 0 0 30px #4d94ff; }
+}
+
+/* Botões Eventos e Ranking */
+.botoes-secundarios {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.botoes-secundarios a {
+    text-decoration: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    color: white;
+    background: linear-gradient(45deg, #ff4d4d, #ffcc00, #4d94ff);
+    background-size: 300% 300%;
+    transition: 0.5s;
+    text-align: center;
+}
+
+.botoes-secundarios a:hover {
+    background-position: 100% 0;
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    margin-top: 40px;
+    padding: 10px 0;
     font-size: 14px;
-}
-body {
-  margin: 0;
-  padding: 0;
-  background: #111;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
-.container {
-  width: 90%;
-  max-width: 800px;
-  padding: 20px;
-  background: #1a1a1a;
-  border-radius: 15px;
-  position: relative;
-  z-index: 1;
-}
-
-.container::before {
-  content: "";
-  position: absolute;
-  top: -4px;
-  left: -4px;
-  right: -4px;
-  bottom: -4px;
-  background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
-  background-size: 400%;
-  border-radius: 18px;
-  z-index: -1;
-  animation: bordaRGB 6s linear infinite;
-}
-
-@keyframes bordaRGB {
-  0% { background-position: 0% }
-  100% { background-position: 400% }
+    color: #ccc;
 }
