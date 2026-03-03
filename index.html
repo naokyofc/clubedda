@@ -4,142 +4,188 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CLUBE DDA</title>
-
-<!-- Google Font Moderna -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="static/style.css">
 
 <style>
+/* Fonte moderna 3D sombreada */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
-    background: #0d0d0d;
-    color: #fff;
     margin: 0;
-    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #111; /* fundo escuro */
+    color: #fff;
 }
+
+/* Título 3D RGB */
 .titulo-3d {
     font-family: 'Orbitron', sans-serif;
     font-size: 50px;
     text-align: center;
     margin: 20px 0;
-    color: #00ffff;
+    background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rgbAnim 8s linear infinite;
     text-shadow: 2px 2px 5px #000;
 }
-.botoes-secundarios {
-    text-align: center;
-    margin: 20px 0;
+
+@keyframes rgbAnim {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
-.botoes-secundarios a {
-    display: inline-block;
-    background: #111;
-    color: #0ff;
-    padding: 10px 20px;
-    margin: 5px;
-    border-radius: 8px;
-    text-decoration: none;
-    cursor: pointer;
-}
-#areaEventos, #areaCamps {
-    display: none;
-    margin: 20px auto;
-    width: 90%;
-    max-width: 800px;
-    background: #111;
-    padding: 20px;
+
+/* Borda RGB para áreas */
+.area-rgb {
+    border: 2px solid;
+    border-image: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet) 1;
     border-radius: 10px;
+    padding: 15px;
+    margin: 10px auto;
 }
-#listaAvisos div, #listaCamps div {
-    margin-bottom: 10px;
-}
-button {
+
+/* Botões gerais */
+button, a.botao-eventos, a.botao-ranking {
     cursor: pointer;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    margin: 5px;
+    background: #222;
+    color: #fff;
+    transition: all 0.2s;
 }
-#painelAdmin {
-    display:none; 
-    position:fixed; 
-    top:0; left:0; 
-    width:100%; height:100%; 
-    background: rgba(0,0,0,0.95); 
-    color:#fff; 
-    padding:30px; 
-    overflow:auto;
+
+button:hover, a:hover {
+    background: #555;
 }
-.admin-btn {
-    display:block; 
-    margin:10px 0; 
-    padding:10px 20px; 
-    background:#222; 
-    color:#0ff; 
-    border:none; 
-    border-radius:8px;
+
+/* Divisão escondida */
+.divisao-escondida {
+    display: none;
+    margin: 10px auto;
+}
+
+/* Menu de 3 barrinhas */
+.menu-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.menu-btn div {
+    height: 4px;
+    background: #fff;
+    border-radius: 2px;
+}
+
+/* Menu lateral */
+.menu-lateral {
+    position: fixed;
+    top: 0;
+    right: -250px;
+    width: 250px;
+    height: 100%;
+    background: #111;
+    transition: right 0.3s;
+    z-index: 999;
+    padding: 50px 20px;
+}
+
+.menu-lateral.open {
+    right: 0;
+}
+
+.menu-lateral a {
+    display: block;
+    margin: 15px 0;
+    color: #fff;
+    text-decoration: none;
 }
 </style>
-
 </head>
 <body>
 
 <h1 class="titulo-3d">CLUBE DDA</h1>
 
-<!-- Botoes Secundarios -->
+<!-- Área principal de eventos -->
 <div class="botoes-secundarios">
-    <a href="javascript:void(0)" onclick="toggleEventos()">📅 Eventos <span id="contador">0</span></a>
-    <a href="javascript:void(0)" onclick="toggleCamps()">🏆 Camps</a>
+    <a href="javascript:void(0)" class="botao-eventos" onclick="toggleEventos()">
+        📅 Eventos <span id="contador" class="contador">0</span>
+    </a>
+    <a href="javascript:void(0)" class="botao-camps" onclick="toggleCamps()">🏆 Camps</a>
 </div>
 
-<!-- AREA DE EVENTOS -->
-<div id="areaEventos">
+<!-- Área de Eventos -->
+<div id="areaEventos" class="area-rgb" style="display:none;">
     <h2>📢 Avisos</h2>
     <div id="listaAvisos"></div>
 </div>
 
-<!-- AREA DE CAMPS -->
-<div id="areaCamps">
-    <h2>🏆 Campeonatos Recentes</h2>
-    <div id="listaCamps"></div>
-    <h3>Melhor Equipe:</h3>
-    <div id="melhorEquipe" style="font-weight:bold;"></div>
+<!-- Área de Camps -->
+<div id="areaCamps" class="area-rgb" style="display:none;">
+    <h2>🎖 Campeonatos Recentes</h2>
+    <div id="listaCamps">Nenhum campeonato ainda.</div>
+    <h3>🏆 Melhor Equipe</h3>
+    <div id="melhorEquipe">Não definido</div>
 </div>
 
-<!-- BOTAO ADMIN -->
-<button onclick="abrirLoginAdmin()" style="position:fixed; bottom:20px; left:20px; background:black; color:#0ff; padding:10px; border:none; border-radius:8px;">🔒 Admin</button>
+<!-- Botão Admin -->
+<button onclick="abrirLoginAdmin()" style="position:fixed; bottom:20px; left:20px; background:black; color:white; z-index:1000;">
+    🔒
+</button>
 
-<!-- PAINEL ADMIN -->
-<div id="painelAdmin">
-    <h2>Painel Administrativo</h2>
-    <button class="admin-btn" onclick="gerenciarBanimentos()">Banimentos</button>
-    <button class="admin-btn" onclick="gerenciarEquipes()">Equipes Destaque</button>
-    <button class="admin-btn" onclick="abrirEventosAdmin()">Eventos</button>
-    <button class="admin-btn" onclick="gerenciarSorteios()">Sorteios</button>
-    <button class="admin-btn" onclick="gerenciarCheckin()">Check-in</button>
-    <button class="admin-btn" onclick="fecharPainel()">Fechar Painel</button>
+<!-- Menu lateral -->
+<div class="menu-btn" onclick="abrirMenu()">
+    <div></div><div></div><div></div>
+</div>
+<div class="menu-lateral" id="menuLateral">
+    <a href="javascript:void(0)" onclick="toggleEventos()">Eventos</a>
+    <a href="javascript:void(0)" onclick="toggleCamps()">Camps</a>
+    <a href="#">Sorteios</a>
+    <a href="#">Banidos</a>
 </div>
 
 <script>
-// ----------------- STORAGE -----------------
+// Dados persistentes
 let avisos = JSON.parse(localStorage.getItem("avisos")) || [];
-let melhor = localStorage.getItem("melhorJogador") || "Ainda não definido";
+let melhorEquipe = localStorage.getItem("melhorEquipe") || "Não definido";
 let contador = avisos.length;
-let camps = JSON.parse(localStorage.getItem("camps")) || [];
-let melhorEquipe = localStorage.getItem("melhorEquipe") || "Ainda não definido";
-let logins = JSON.parse(localStorage.getItem("logins")) || [];
-let checkins = JSON.parse(localStorage.getItem("checkins")) || [];
 
-// ----------------- EVENTOS -----------------
+// Funções de toggle
 function toggleEventos(){
     let area = document.getElementById("areaEventos");
     area.style.display = (area.style.display === "block") ? "none" : "block";
-    if(area.style.display === "block") { contador = 0; atualizarContador(); }
+    if(area.style.display === "block") contador = 0;
+    atualizarContador();
     atualizarTela();
 }
 
+function toggleCamps(){
+    let area = document.getElementById("areaCamps");
+    area.style.display = (area.style.display === "block") ? "none" : "block";
+}
+
+// Atualiza telas
 function atualizarTela(){
     let lista = document.getElementById("listaAvisos");
     lista.innerHTML = "";
-    avisos.forEach((aviso,index)=>{
-        lista.innerHTML += `<div>📌 ${aviso} <button onclick="apagarAviso(${index})" style="background:red; color:white; border:none; padding:2px 5px;">❌</button></div>`;
+    avisos.forEach((aviso, index) => {
+        lista.innerHTML += `<div>📌 ${aviso} <button onclick="apagarAviso(${index})">❌</button></div>`;
     });
     document.getElementById("melhorEquipe").innerText = melhorEquipe;
 }
 
+// Apagar aviso
 function apagarAviso(index){
     avisos.splice(index,1);
     localStorage.setItem("avisos", JSON.stringify(avisos));
@@ -148,66 +194,57 @@ function apagarAviso(index){
     atualizarContador();
 }
 
+// Contador
 function atualizarContador(){
     document.getElementById("contador").innerText = contador;
 }
 
-// ----------------- CAMPS -----------------
-function toggleCamps(){
-    let area = document.getElementById("areaCamps");
-    area.style.display = (area.style.display==="block") ? "none" : "block";
-    atualizarTela();
-}
-
-// ----------------- ADMIN -----------------
+// Painel Admin
 function abrirLoginAdmin(){
     let senha = prompt("Digite a senha:");
-    if(senha==="clubedda2026"){
-        document.getElementById("painelAdmin").style.display="block";
-    } else alert("Senha incorreta!");
-}
-
-function fecharPainel(){ document.getElementById("painelAdmin").style.display="none"; }
-
-function gerenciarBanimentos(){ alert("Aqui você poderá gerenciar banimentos (em breve funcional)"); }
-function gerenciarEquipes(){ 
-    let novaEquipe = prompt("Digite a equipe destaque:");
-    if(novaEquipe){ melhorEquipe = novaEquipe; localStorage.setItem("melhorEquipe", melhorEquipe); atualizarTela(); alert("Equipe atualizada!"); }
-}
-function abrirEventosAdmin(){
-    let aviso = prompt("Digite o aviso:");
-    if(aviso){ avisos.push(aviso); localStorage.setItem("avisos", JSON.stringify(avisos)); contador++; atualizarContador(); atualizarTela(); alert("Aviso enviado!"); }
-}
-function gerenciarSorteios(){ alert("Aqui você poderá gerenciar sorteios (em breve)"); }
-
-function gerenciarCheckin(){
-    let nick = prompt("Digite seu Nick para check-in:");
-    if(nick){
-        let agora = new Date().toLocaleString();
-        checkins.push({nick,n:agora});
-        localStorage.setItem("checkins", JSON.stringify(checkins));
-        alert(`Check-in realizado! (${nick})`);
-    }
-}
-
-// ----------------- LOGIN DE USUARIOS -----------------
-function pedirLogin(){
-    let user = prompt("Digite seu usuário:");
-    if(user){
-        let nick = prompt("Qual seu Nick no jogo?");
-        if(nick){
-            logins.push({user,nick});
-            localStorage.setItem("logins", JSON.stringify(logins));
-            alert(`Bem-vindo ${user} (${nick})`);
+    const adminsEspeciais = ["MIMOZO DDA","LUIZDDA","DONOFIELDDA","ERRO404DDA"];
+    let user = localStorage.getItem("usuarioAtual");
+    
+    if(adminsEspeciais.includes(user) || senha === "clubedda2026"){
+        let aviso = prompt("Digite o aviso:");
+        if(aviso){ 
+            avisos.push(aviso);
+            localStorage.setItem("avisos", JSON.stringify(avisos));
+            contador = avisos.length;
+            atualizarContador();
         }
+        let equipe = prompt("Digite a melhor equipe:");
+        if(equipe){
+            melhorEquipe = equipe;
+            localStorage.setItem("melhorEquipe", melhorEquipe);
+        }
+        alert("Alterações aplicadas!");
+    } else {
+        alert("Senha incorreta!");
     }
 }
 
-// ----------------- INICIAL -----------------
-document.addEventListener("DOMContentLoaded", function(){
+// Menu lateral
+function abrirMenu(){
+    let menu = document.getElementById("menuLateral");
+    menu.classList.toggle("open");
+}
+
+// Login de usuário
+let usuario = localStorage.getItem("usuarioAtual");
+if(!usuario){
+    usuario = prompt("Digite seu login:");
+    if(usuario) {
+        localStorage.setItem("usuarioAtual", usuario);
+        let nick = prompt("Digite seu Nick no jogo:");
+        localStorage.setItem(usuario+"_nick", nick);
+    }
+}
+
+// Inicialização
+document.addEventListener("DOMContentLoaded", ()=>{
     atualizarTela();
     atualizarContador();
-    pedirLogin();
 });
 </script>
 
