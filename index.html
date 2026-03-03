@@ -1,327 +1,142 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CLUBE DDA</title>
-    <link rel="stylesheet" href="static/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLUBE DDA</title>
+<link rel="stylesheet" href="static/style.css">
 </head>
+
 <body>
 
-    <!-- Título 3D -->
-    <h1 class="titulo-3d">CLUBE DDA</h1>
+<h1 class="titulo-3d">CLUBE DDA</h1>
 
-    <!-- Botões Divisão 1 e 2 -->
-    <div class="botoes-principais">
-        <button onclick="toggleDiv('divisao1')" class="botao-divisao">DIVISÃO 1</button>
-        <button onclick="toggleDiv('divisao2')" class="botao-divisao">DIVISÃO 2</button>
-    </div>
-
-    <!-- Divisão 1 -->
-    <div id="divisao1" class="divisao-escondida">
-        <h2>🏆 CLUBE 1 — OS GOATS</h2>
-        <p>
-            LUIS2 | DDA<br>
-            ultimo fiel<br>
-            ERRO 404<br>
-            MIMOZO DDA<br>
-            MacMoney<br>
-            crebs love<br>
-            gusta¤<br>
-            MCRL | santos<br>
-            †† Rzm64<br>
-            perigo<br>
-            essência<br>
-            CMDツ Maverick<br>
-            BRADOKI<br>
-            code:Joao<br>
-            Sla | DDA<br>
-            愛 | kroy'BS<br>
-            sukunagoat<br>
-            Loki_god
-<!-- ÁREA DOS ADMS -->
-<div class="admin-area">
-    <h2>🔥 ADMINISTRADORES</h2>
-    <div class="admin-nome">Luiz DDA</div>
-    <div class="admin-nome">ULTIMO FIEL DDA</div>
-    <div class="admin-nome">MIMOSO DDA</div>
-    <div class="admin-nome">ERRO 404</div>            
-        </p>
-    </div>
-
-    <!-- Divisão 2 -->
-    <div id="divisao2" class="divisao-escondida">
-        <h2>👑 CLUBE 2 — OS GOATS</h2>
-        <p>
-            NEGAOTORADOR<br>
-            Jao_Noel<br>
-            night lix<br>
-            KZ | Kunzler†<br>
-            BALAS | BS<br>
-            cranin<br>
-            KM | Lord<br>
-            🌙•MooN•✨<br>
-            Francisco 🧡<br>
-            vitinho<br>
-            VENON<br>
-            愛 | Blaze!<br>
-            Shadow<br>
-            Flash<br>
-            NAVI | Ben On<br>
-            Mailson | DDA<br>
-            DINHO/YT<br>
-            siméxz<br>
-            enzao Clash on<br>
-            TRINITY 🪽<br>
-            ItaliCx
-<!-- ÁREA DOS ADMS -->
-<div class="admin-area">
-    <h2>🔥 ADMINISTRADORES</h2>
-    <div class="admin-nome">Luiz DDA</div>
-    <div class="admin-nome">ULTIMO FIEL DDA</div>
-    <div class="admin-nome">MIMOSO DDA</div>
-    <div class="admin-nome">ERRO 404</div>
+<div class="botoes-principais">
+<button onclick="toggleDiv('divisao1')" class="botao-divisao">Divisão 1</button>
+<button onclick="toggleDiv('divisao2')" class="botao-divisao">Divisão 2</button>
 </div>
-        </p>
-    </div>
 
-    <!-- Links WhatsApp e Discord -->
-    <div class="links">
-        <a href="https://chat.whatsapp.com/J5vp0AvG0eX6aYdJcYJneI?mode=gi_t" target="_blank" class="btn-whatsapp">WhatsApp</a>
-        <a href="https://discord.gg/cnZ6VRkVm" target="_blank" class="btn-discord">Discord</a>
-    </div>
+<!-- DIVISÃO 1 -->
+<div id="divisao1" class="divisao-escondida">
+<h2>🏆 CLUBE 1 — OS GOATS</h2>
+<p>Lista de membros...</p>
+</div>
 
-    <!-- Banner Membro da Semana -->
-    <div class="destaque">
-        <h2>Membro da Semana</h2>
-        <p>🏆 Em breve...</p>
-    </div>
+<!-- DIVISÃO 2 -->
+<div id="divisao2" class="divisao-escondida">
+<h2>👑 CLUBE 2 — OS GOATS</h2>
+<p>Lista de membros...</p>
+</div>
 
-    <!-- Botões Eventos e Ranking -->
-    <div class="botoes-secundarios">
-        <a  href="javascript:void(0)" class="botao-eventos" onclick="toggleEventos()">
-    📅 Eventos
-    <span id="contador" class="contador">0</span>
+<!-- EVENTOS -->
+<div class="botoes-secundarios">
+<a href="javascript:void(0)" class="botao-eventos" onclick="toggleEventos()">
+📅 Eventos
+<span id="contador" class="contador">0</span>
 </a>
-        </a>
-        <a href="#" class="botao-ranking">🏆 Ranking DDA</a>
-    </div>
+</div>
 
-    <!-- Footer -->
-    <footer>
-        <p>© Direitos reservados a jv.org</p>
-    </footer>
+<!-- ÁREA DE EVENTOS -->
+<div id="areaEventos" style="display:none; margin-top:20px;">
+<h2>📢 Avisos</h2>
+<div id="listaAvisos"></div>
 
-    <!-- JS -->
-    <script>
+<h2 style="margin-top:30px;">🏆 Melhor Jogador da Semana</h2>
+<div id="melhorJogador" style="font-size:20px; font-weight:bold;"></div>
+</div>
+
+<!-- BOTÃO ADMIN -->
+<button onclick="abrirLoginAdmin()"
+style="position:fixed; bottom:20px; left:20px; background:black; color:white; border:none; padding:10px; border-radius:50%;">
+🔒
+</button>
+
 <script>
-function toggleDiv(id){
-    var div = document.getElementById(id);
-    div.style.display = (div.style.display === "block") ? "none" : "block";
-}
+
 let avisos = JSON.parse(localStorage.getItem("avisos")) || [];
 let melhor = localStorage.getItem("melhorJogador") || "Ainda não definido";
 let contador = avisos.length;
 
+function toggleDiv(id){
+let div = document.getElementById(id);
+div.style.display = (div.style.display === "block") ? "none" : "block";
+}
+
 function toggleEventos(){
-    let area = document.getElementById("areaEventos");
-    area.style.display = (area.style.display === "block") ? "none" : "block";
+let area = document.getElementById("areaEventos");
+area.style.display = (area.style.display === "block") ? "none" : "block";
 
-    atualizarTela();
+if(area.style.display === "block"){
+contador = 0;
+atualizarContador();
+}
 
-    // Zerar contador ao abrir
-    contador = 0;
-    atualizarContador();
+atualizarTela();
 }
 
 function atualizarTela(){
-    let lista = document.getElementById("listaAvisos");
-    lista.innerHTML = "";
+let lista = document.getElementById("listaAvisos");
+lista.innerHTML = "";
 
-    avisos.forEach((aviso, index) => {
-        lista.innerHTML += `
-            <div style="margin-bottom:10px;">
-                📌 ${aviso}
-                <button onclick="apagarAviso(${index})" 
-                style="margin-left:10px; background:red; color:white; border:none; border-radius:5px;">
-                ❌
-                </button>
-            </div>
-        `;
-    });
+avisos.forEach((aviso, index) => {
+lista.innerHTML += `
+<div style="margin-bottom:10px;">
+📌 ${aviso}
+<button onclick="apagarAviso(${index})"
+style="margin-left:10px; background:red; color:white; border:none; padding:3px 6px; border-radius:5px;">
+❌
+</button>
+</div>
+`;
+});
 
-    document.getElementById("melhorJogador").innerText = melhor;
+document.getElementById("melhorJogador").innerText = melhor;
 }
 
 function apagarAviso(index){
-    avisos.splice(index, 1);
-    localStorage.setItem("avisos", JSON.stringify(avisos));
-    atualizarTela();
+avisos.splice(index, 1);
+localStorage.setItem("avisos", JSON.stringify(avisos));
+contador = avisos.length;
+atualizarTela();
+atualizarContador();
 }
 
 function abrirLoginAdmin(){
-    let senha = prompt("Digite a senha:");
-    if(senha === "clubedda2026"){
+let senha = prompt("Digite a senha:");
 
-        let mensagem = prompt("Digite o aviso:");
-        if(mensagem){
-            avisos.push(mensagem);
-            localStorage.setItem("avisos", JSON.stringify(avisos));
-            contador++;
-            atualizarContador();
-            alert("Aviso enviado!");
-        }
+if(senha === "clubedda2026"){
 
-        let novoMelhor = prompt("Digite o Melhor Jogador da Semana:");
-        if(novoMelhor){
-            melhor = novoMelhor;
-            localStorage.setItem("melhorJogador", melhor);
-            alert("Melhor jogador atualizado!");
-        }
+let mensagem = prompt("Digite o aviso:");
+if(mensagem){
+avisos.push(mensagem);
+localStorage.setItem("avisos", JSON.stringify(avisos));
+contador = avisos.length;
+atualizarContador();
+alert("Aviso enviado!");
+}
 
-    } else {
-        alert("Senha incorreta!");
-    }
+let novoMelhor = prompt("Digite o Melhor Jogador da Semana:");
+if(novoMelhor){
+melhor = novoMelhor;
+localStorage.setItem("melhorJogador", melhor);
+alert("Melhor jogador atualizado!");
+}
+
+} else {
+alert("Senha incorreta!");
+}
 }
 
 function atualizarContador(){
-    document.getElementById("contador").innerText = contador;
+document.getElementById("contador").innerText = contador;
 }
 
 document.addEventListener("DOMContentLoaded", function(){
-    atualizarTela();
-    atualizarContador();
+atualizarTela();
+atualizarContador();
 });
 
-    </script>
-<!-- 🔒 BOTÃO CADEADO -->
-<button onclick="abrirLoginAdmin()" 
-style="position:fixed; bottom:20px; left:20px; background:black; color:white; border:2px solid red; padding:10px; border-radius:10px;">
-🔒
-</button>
-
-<!-- 🔐 PAINEL ADMIN (ESCONDIDO) -->
-<div id="painelAdmin" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000000f0; color:white; text-align:center; padding-top:100px;">
-
-    <h2>🔐 Painel Administrativo</h2>
-
-    <textarea id="mensagemAdmin" 
-    placeholder="Digite o aviso aqui..." 
-    style="width:80%; height:100px; padding:10px; border-radius:10px;"></textarea>
-
-    <br><br>
-
-    <button onclick="enviarAviso()" 
-    style="padding:10px 20px; border:none; border-radius:10px; background:red; color:white;">
-    Enviar Notificação
-    </button>
-
-    <br><br>
-
-    <button onclick="fecharPainel()" 
-    style="padding:8px 15px; border:none; border-radius:10px; background:gray; color:white;">
-    Fechar
-    </button>
-
-</div>
-
-<script>
-function abrirLoginAdmin(){
-    let senha = prompt("Digite a senha de administrador:");
-
-    if(senha === "clubedda2026"){
-        document.getElementById("painelAdmin").style.display = "block";
-    } else {
-        alert("Senha incorreta!");
-    }
-}
-
-function fecharPainel(){
-    document.getElementById("painelAdmin").style.display = "none";
-}
-
-function enviarAviso(){
-    let mensagem = document.getElementById("mensagemAdmin").value;
-
-    if(mensagem.trim() === ""){
-        alert("Digite uma mensagem!");
-        return;
-    }
-
-    if("Notification" in window){
-        if(Notification.permission === "granted"){
-            new Notification("📢 Aviso Clube DDA", {
-                body: mensagem
-            });
-        } else {
-            Notification.requestPermission();
-        }
-    }
-
-    document.getElementById("mensagemAdmin").value = "";
-    alert("Notificação enviada!");
-}
 </script>
-<!-- 📅 ÁREA DE EVENTOS -->
-<div id="areaEventos" style="display:none; margin-top:20px;">
-    <h2>📢 Avisos</h2>
-    <div id="listaAvisos"></div>
 
-    <h2 style="margin-top:30px;">🏆 Melhor Jogador da Semana</h2>
-    <div id="melhorJogador" style="font-size:20px; font-weight:bold;"></div>
-</div>
-
-<!-- 🔒 BOTÃO ADMIN -->
-<button onclick="abrirLoginAdmin()" 
-style="position:fixed; bottom:20px; left:20px; background:black; color:white; border:2px solid red; padding:10px; border-radius:10px;">
-🔒
-</button>
-
-<script>
-
-let avisos = JSON.parse(localStorage.getItem("avisos")) || [];
-let melhor = localStorage.getItem("melhorJogador") || "Ainda não definido";
-
-function toggleEventos(){
-    let area = document.getElementById("areaEventos");
-    area.style.display = (area.style.display === "block") ? "none" : "block";
-    atualizarTela();
-}
-
-function atualizarTela(){
-    let lista = document.getElementById("listaAvisos");
-    lista.innerHTML = "";
-
-    avisos.forEach((aviso, index) => {
-        lista.innerHTML += "<p>📌 " + aviso + "</p>";
-    });
-
-    document.getElementById("melhorJogador").innerText = melhor;
-}
-
-function abrirLoginAdmin(){
-    let senha = prompt("Digite a senha:");
-    if(senha === "clubedda2026"){
-        let mensagem = prompt("Digite o aviso:");
-        if(mensagem){
-            avisos.push(mensagem);
-            localStorage.setItem("avisos", JSON.stringify(avisos));
-            alert("Aviso enviado!");
-        }
-
-        let novoMelhor = prompt("Digite o Melhor Jogador da Semana:");
-        if(novoMelhor){
-            melhor = novoMelhor;
-            localStorage.setItem("melhorJogador", melhor);
-            alert("Melhor jogador atualizado!");
-        }
-    } else {
-        alert("Senha incorreta!");
-    }
-}
-
-document.addEventListener("DOMContentLoaded", atualizarTela);
-
-</script>
 </body>
 </html>
