@@ -9,133 +9,136 @@
 
 <body>
 
+<!-- LOGO DO BRASÃO -->
+<div class="logo-container">
+    <img src="assets/logo.png" class="logo-dda">
+</div>
+
 <h1 class="titulo-3d">CLUBE DDA</h1>
 
 <div class="botoes-principais">
-<button onclick="toggleDiv('divisao1')" class="botao-divisao">Divisão 1</button>
-<button onclick="toggleDiv('divisao2')" class="botao-divisao">Divisão 2</button>
+    <button onclick="toggleDiv('divisao1')" class="botao-divisao">Divisão 1 ></button>
+    <button onclick="toggleDiv('divisao2')" class="botao-divisao">Divisão 2 ></button>
 </div>
 
 <!-- DIVISÃO 1 -->
 <div id="divisao1" class="divisao-escondida">
-<h2>🏆 CLUBE 1 — OS GOATS</h2>
-<p>Lista de membros...</p>
+    <h2>🏆 CLUBE 1 — OS GOATS</h2>
+    <p>Lista de membros...</p>
 </div>
 
 <!-- DIVISÃO 2 -->
 <div id="divisao2" class="divisao-escondida">
-<h2>👑 CLUBE 2 — OS GOATS</h2>
-<p>Lista de membros...</p>
+    <h2>👑 CLUBE 2 — OS GOATS</h2>
+    <p>Lista de membros...</p>
 </div>
 
 <!-- EVENTOS -->
 <div class="botoes-secundarios">
-<a href="javascript:void(0)" class="botao-eventos" onclick="toggleEventos()">
-📅 Eventos
-<span id="contador" class="contador">0</span>
-</a>
+    <a href="javascript:void(0)" class="botao-eventos" onclick="toggleEventos()">
+        📅 Eventos
+        <span id="contador" class="contador">0</span>
+    </a>
 </div>
 
 <!-- ÁREA DE EVENTOS -->
 <div id="areaEventos" style="display:none; margin-top:20px;">
-<h2>📢 Avisos</h2>
-<div id="listaAvisos"></div>
+    <h2>📢 Avisos</h2>
+    <div id="listaAvisos"></div>
 
-<h2 style="margin-top:30px;">🏆 Melhor Jogador da Semana</h2>
-<div id="melhorJogador" style="font-size:20px; font-weight:bold;"></div>
+    <h2 style="margin-top:30px;">🏆 Melhor Jogador da Semana</h2>
+    <div id="melhorJogador" style="font-size:20px; font-weight:bold;"></div>
 </div>
 
 <!-- BOTÃO ADMIN -->
 <button onclick="abrirLoginAdmin()"
-style="position:fixed; bottom:20px; left:20px; background:black; color:white; border:none; padding:10px; border-radius:50%;">
+style="position:fixed; bottom:20px; left:20px; background:black; color:white; border:none; padding:10px; border-radius:10px;">
 🔒
 </button>
 
 <script>
-
 let avisos = JSON.parse(localStorage.getItem("avisos")) || [];
 let melhor = localStorage.getItem("melhorJogador") || "Ainda não definido";
 let contador = avisos.length;
 
 function toggleDiv(id){
-let div = document.getElementById(id);
-div.style.display = (div.style.display === "block") ? "none" : "block";
+    let div = document.getElementById(id);
+    div.style.display = (div.style.display === "block") ? "none" : "block";
 }
 
 function toggleEventos(){
-let area = document.getElementById("areaEventos");
-area.style.display = (area.style.display === "block") ? "none" : "block";
+    let area = document.getElementById("areaEventos");
+    area.style.display = (area.style.display === "block") ? "none" : "block";
 
-if(area.style.display === "block"){
-contador = 0;
-atualizarContador();
-}
+    if(area.style.display === "block"){
+        contador = 0;
+        atualizarContador();
+    }
 
-atualizarTela();
+    atualizarTela();
 }
 
 function atualizarTela(){
-let lista = document.getElementById("listaAvisos");
-lista.innerHTML = "";
+    let lista = document.getElementById("listaAvisos");
+    lista.innerHTML = "";
 
-avisos.forEach((aviso, index) => {
-lista.innerHTML += `
-<div style="margin-bottom:10px;">
-📌 ${aviso}
-<button onclick="apagarAviso(${index})"
-style="margin-left:10px; background:red; color:white; border:none; padding:3px 6px; border-radius:5px;">
-❌
-</button>
-</div>
-`;
-});
+    avisos.forEach((aviso, index) => {
+        lista.innerHTML += `
+        <div style="margin-bottom:10px;">
+            📌 ${aviso}
+            <button onclick="apagarAviso(${index})"
+            style="margin-left:10px; background:red; color:white; border:none; padding:2px 6px; border-radius:5px;">
+            ❌
+            </button>
+        </div>
+        `;
+    });
 
-document.getElementById("melhorJogador").innerText = melhor;
+    document.getElementById("melhorJogador").innerText = melhor;
 }
 
 function apagarAviso(index){
-avisos.splice(index, 1);
-localStorage.setItem("avisos", JSON.stringify(avisos));
-contador = avisos.length;
-atualizarTela();
-atualizarContador();
+    avisos.splice(index, 1);
+    localStorage.setItem("avisos", JSON.stringify(avisos));
+    contador = avisos.length;
+    atualizarTela();
+    atualizarContador();
 }
 
 function abrirLoginAdmin(){
-let senha = prompt("Digite a senha:");
+    let senha = prompt("Digite a senha:");
 
-if(senha === "clubedda2026"){
+    if(senha === "clubedda2026"){
 
-let mensagem = prompt("Digite o aviso:");
-if(mensagem){
-avisos.push(mensagem);
-localStorage.setItem("avisos", JSON.stringify(avisos));
-contador = avisos.length;
-atualizarContador();
-alert("Aviso enviado!");
-}
+        let mensagem = prompt("Digite o aviso:");
+        if(mensagem){
+            avisos.push(mensagem);
+            localStorage.setItem("avisos", JSON.stringify(avisos));
+            contador = avisos.length;
+            atualizarContador();
+            alert("Aviso enviado!");
+        }
 
-let novoMelhor = prompt("Digite o Melhor Jogador da Semana:");
-if(novoMelhor){
-melhor = novoMelhor;
-localStorage.setItem("melhorJogador", melhor);
-alert("Melhor jogador atualizado!");
-}
+        let novoMelhor = prompt("Digite o Melhor Jogador da Semana:");
+        if(novoMelhor){
+            melhor = novoMelhor;
+            localStorage.setItem("melhorJogador", melhor);
+            alert("Melhor jogador atualizado!");
+        }
 
-} else {
-alert("Senha incorreta!");
-}
+    } else {
+        alert("Senha incorreta!");
+    }
 }
 
 function atualizarContador(){
-document.getElementById("contador").innerText = contador;
+    document.getElementById("contador").innerText = contador;
 }
 
 document.addEventListener("DOMContentLoaded", function(){
-atualizarTela();
-atualizarContador();
+    atualizarTela();
+    atualizarContador();
 });
-
 </script>
 
 </body>
