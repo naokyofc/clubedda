@@ -1,169 +1,213 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CLUBE DDA</title>
-<link rel="stylesheet" href="static/style.css">
-</head>
 
+<!-- Google Font Moderna -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #0d0d0d;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+.titulo-3d {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 50px;
+    text-align: center;
+    margin: 20px 0;
+    color: #00ffff;
+    text-shadow: 2px 2px 5px #000;
+}
+.botoes-secundarios {
+    text-align: center;
+    margin: 20px 0;
+}
+.botoes-secundarios a {
+    display: inline-block;
+    background: #111;
+    color: #0ff;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+}
+#areaEventos, #areaCamps {
+    display: none;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 800px;
+    background: #111;
+    padding: 20px;
+    border-radius: 10px;
+}
+#listaAvisos div, #listaCamps div {
+    margin-bottom: 10px;
+}
+button {
+    cursor: pointer;
+}
+#painelAdmin {
+    display:none; 
+    position:fixed; 
+    top:0; left:0; 
+    width:100%; height:100%; 
+    background: rgba(0,0,0,0.95); 
+    color:#fff; 
+    padding:30px; 
+    overflow:auto;
+}
+.admin-btn {
+    display:block; 
+    margin:10px 0; 
+    padding:10px 20px; 
+    background:#222; 
+    color:#0ff; 
+    border:none; 
+    border-radius:8px;
+}
+</style>
+
+</head>
 <body>
 
 <h1 class="titulo-3d">CLUBE DDA</h1>
 
-<div class="botoes-principais">
-    <button onclick="toggleDiv('divisao1')" class="botao-divisao">Divisão 1 ></button>
-    <button onclick="toggleDiv('divisao2')" class="botao-divisao">Divisão 2 ></button>
-</div>
-
-<!-- DIVISÃO 1 -->
-<div id="divisao1" class="divisao-escondida">
-    <h2>🏆 CLUBE 1 — OS GOATS</h2>
-    <p>MacMoney
-ultimo fiel
-crebs love
-gusta¤
-MCRL | santos
-†† Rzm64
-perigo
-essência
-CMDツ Maverick
-BRADOKI
-code:Joao
-Sla | DDA
-愛 | kroy'BS
-sukunagoat
-Loki_god
-LUIS2 | DDA</p>
-</div>
-
-<!-- DIVISÃO 2 -->
-<div id="divisao2" class="divisao-escondida">
-    <h2>👑 CLUBE 2 — OS GOATS</h2>
-    <p>MacMoney
-ultimo fiel
-crebs love
-gusta¤
-MCRL | santos
-†† Rzm64
-perigo
-essência
-CMDツ Maverick
-BRADOKI
-code:Joao
-Sla | DDA
-愛 | kroy'BS
-sukunagoat
-Loki_god
-LUIS2 | DDA</p>
-</div>
-
-<!-- EVENTOS -->
+<!-- Botoes Secundarios -->
 <div class="botoes-secundarios">
-    <a href="javascript:void(0)" class="botao-eventos" onclick="toggleEventos()">
-        📅 Eventos
-        <span id="contador" class="contador">0</span>
-    </a>
+    <a href="javascript:void(0)" onclick="toggleEventos()">📅 Eventos <span id="contador">0</span></a>
+    <a href="javascript:void(0)" onclick="toggleCamps()">🏆 Camps</a>
 </div>
 
-<!-- ÁREA DE EVENTOS -->
-<div id="areaEventos" style="display:none; margin-top:20px;">
+<!-- AREA DE EVENTOS -->
+<div id="areaEventos">
     <h2>📢 Avisos</h2>
     <div id="listaAvisos"></div>
-
-    <h2 style="margin-top:30px;">🏆 Melhor Jogador da Semana</h2>
-    <div id="melhorJogador" style="font-size:20px; font-weight:bold;"></div>
 </div>
 
-<!-- BOTÃO ADMIN -->
-<button onclick="abrirLoginAdmin()"
-style="position:fixed; bottom:20px; left:20px; background:black; color:white; border:none; padding:10px; border-radius:10px;">
-🔒
-</button>
+<!-- AREA DE CAMPS -->
+<div id="areaCamps">
+    <h2>🏆 Campeonatos Recentes</h2>
+    <div id="listaCamps"></div>
+    <h3>Melhor Equipe:</h3>
+    <div id="melhorEquipe" style="font-weight:bold;"></div>
+</div>
+
+<!-- BOTAO ADMIN -->
+<button onclick="abrirLoginAdmin()" style="position:fixed; bottom:20px; left:20px; background:black; color:#0ff; padding:10px; border:none; border-radius:8px;">🔒 Admin</button>
+
+<!-- PAINEL ADMIN -->
+<div id="painelAdmin">
+    <h2>Painel Administrativo</h2>
+    <button class="admin-btn" onclick="gerenciarBanimentos()">Banimentos</button>
+    <button class="admin-btn" onclick="gerenciarEquipes()">Equipes Destaque</button>
+    <button class="admin-btn" onclick="abrirEventosAdmin()">Eventos</button>
+    <button class="admin-btn" onclick="gerenciarSorteios()">Sorteios</button>
+    <button class="admin-btn" onclick="gerenciarCheckin()">Check-in</button>
+    <button class="admin-btn" onclick="fecharPainel()">Fechar Painel</button>
+</div>
 
 <script>
+// ----------------- STORAGE -----------------
 let avisos = JSON.parse(localStorage.getItem("avisos")) || [];
 let melhor = localStorage.getItem("melhorJogador") || "Ainda não definido";
 let contador = avisos.length;
+let camps = JSON.parse(localStorage.getItem("camps")) || [];
+let melhorEquipe = localStorage.getItem("melhorEquipe") || "Ainda não definido";
+let logins = JSON.parse(localStorage.getItem("logins")) || [];
+let checkins = JSON.parse(localStorage.getItem("checkins")) || [];
 
-function toggleDiv(id){
-    let div = document.getElementById(id);
-    div.style.display = (div.style.display === "block") ? "none" : "block";
-}
-
+// ----------------- EVENTOS -----------------
 function toggleEventos(){
     let area = document.getElementById("areaEventos");
     area.style.display = (area.style.display === "block") ? "none" : "block";
-
-    if(area.style.display === "block"){
-        contador = 0;
-        atualizarContador();
-    }
-
+    if(area.style.display === "block") { contador = 0; atualizarContador(); }
     atualizarTela();
 }
 
 function atualizarTela(){
     let lista = document.getElementById("listaAvisos");
     lista.innerHTML = "";
-
-    avisos.forEach((aviso, index) => {
-        lista.innerHTML += `
-        <div style="margin-bottom:10px;">
-            📌 ${aviso}
-            <button onclick="apagarAviso(${index})"
-            style="margin-left:10px; background:red; color:white; border:none; padding:2px 6px; border-radius:5px;">
-            ❌
-            </button>
-        </div>
-        `;
+    avisos.forEach((aviso,index)=>{
+        lista.innerHTML += `<div>📌 ${aviso} <button onclick="apagarAviso(${index})" style="background:red; color:white; border:none; padding:2px 5px;">❌</button></div>`;
     });
-
-    document.getElementById("melhorJogador").innerText = melhor;
+    document.getElementById("melhorEquipe").innerText = melhorEquipe;
 }
 
 function apagarAviso(index){
-    avisos.splice(index, 1);
+    avisos.splice(index,1);
     localStorage.setItem("avisos", JSON.stringify(avisos));
     contador = avisos.length;
     atualizarTela();
     atualizarContador();
 }
 
-function abrirLoginAdmin(){
-    let senha = prompt("Digite a senha:");
-
-    if(senha === "clubedda2026"){
-
-        let mensagem = prompt("Digite o aviso:");
-        if(mensagem){
-            avisos.push(mensagem);
-            localStorage.setItem("avisos", JSON.stringify(avisos));
-            contador = avisos.length;
-            atualizarContador();
-            alert("Aviso enviado!");
-        }
-
-        let novoMelhor = prompt("Digite o Melhor Jogador da Semana:");
-        if(novoMelhor){
-            melhor = novoMelhor;
-            localStorage.setItem("melhorJogador", melhor);
-            alert("Melhor jogador atualizado!");
-        }
-
-    } else {
-        alert("Senha incorreta!");
-    }
-}
-
 function atualizarContador(){
     document.getElementById("contador").innerText = contador;
 }
 
+// ----------------- CAMPS -----------------
+function toggleCamps(){
+    let area = document.getElementById("areaCamps");
+    area.style.display = (area.style.display==="block") ? "none" : "block";
+    atualizarTela();
+}
+
+// ----------------- ADMIN -----------------
+function abrirLoginAdmin(){
+    let senha = prompt("Digite a senha:");
+    if(senha==="clubedda2026"){
+        document.getElementById("painelAdmin").style.display="block";
+    } else alert("Senha incorreta!");
+}
+
+function fecharPainel(){ document.getElementById("painelAdmin").style.display="none"; }
+
+function gerenciarBanimentos(){ alert("Aqui você poderá gerenciar banimentos (em breve funcional)"); }
+function gerenciarEquipes(){ 
+    let novaEquipe = prompt("Digite a equipe destaque:");
+    if(novaEquipe){ melhorEquipe = novaEquipe; localStorage.setItem("melhorEquipe", melhorEquipe); atualizarTela(); alert("Equipe atualizada!"); }
+}
+function abrirEventosAdmin(){
+    let aviso = prompt("Digite o aviso:");
+    if(aviso){ avisos.push(aviso); localStorage.setItem("avisos", JSON.stringify(avisos)); contador++; atualizarContador(); atualizarTela(); alert("Aviso enviado!"); }
+}
+function gerenciarSorteios(){ alert("Aqui você poderá gerenciar sorteios (em breve)"); }
+
+function gerenciarCheckin(){
+    let nick = prompt("Digite seu Nick para check-in:");
+    if(nick){
+        let agora = new Date().toLocaleString();
+        checkins.push({nick,n:agora});
+        localStorage.setItem("checkins", JSON.stringify(checkins));
+        alert(`Check-in realizado! (${nick})`);
+    }
+}
+
+// ----------------- LOGIN DE USUARIOS -----------------
+function pedirLogin(){
+    let user = prompt("Digite seu usuário:");
+    if(user){
+        let nick = prompt("Qual seu Nick no jogo?");
+        if(nick){
+            logins.push({user,nick});
+            localStorage.setItem("logins", JSON.stringify(logins));
+            alert(`Bem-vindo ${user} (${nick})`);
+        }
+    }
+}
+
+// ----------------- INICIAL -----------------
 document.addEventListener("DOMContentLoaded", function(){
     atualizarTela();
     atualizarContador();
+    pedirLogin();
 });
 </script>
 
