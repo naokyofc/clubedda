@@ -144,3 +144,58 @@ footer {
     80% { color: blue; }
     100% { color: violet; }
 }
+.centro-oficial {
+    text-align: center;
+    margin: 80px auto;
+    max-width: 600px;
+}
+
+.botao-participe {
+    display: inline-block;
+    background-color: #1e5eff;
+    color: white;
+    padding: 15px 40px;
+    font-size: 22px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.botao-participe:hover {
+    background-color: #1542b8;
+    transform: scale(1.05);
+}
+
+.mao-click {
+    font-size: 28px;
+    margin-top: 10px;
+    animation: clicar 1s infinite;
+}
+
+@keyframes clicar {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(5px); }
+    100% { transform: translateY(0px); }
+}
+
+.slogan {
+    margin-top: 25px;
+    font-size: 16px;
+    color: #ccc;
+}
+
+.links-oficiais {
+    margin-top: 20px;
+}
+
+.links-oficiais a {
+    margin: 0 15px;
+    color: #1e5eff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.links-oficiais a:hover {
+    text-decoration: underline;
+}
